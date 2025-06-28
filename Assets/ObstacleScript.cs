@@ -22,17 +22,19 @@ public class ObstacleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // object moves across the x-axis
         ObstacleObject.transform.position = new Vector3(ObstacleObject.transform.position.x+speed, ObstacleObject.transform.position.y, ObstacleObject.transform.position.z);
 
         if (ObstacleObject.transform.position.x > -9 && ObstacleObject.transform.position.x < -8) {
 
-            if (tracker == false) {
+            if (tracker == false) { // versichert dass nur einmal ein neuer baum gespawned wird!
                 Debug.Log(ObstacleObject.transform.position.x);
                 // ein neues objectr spawnen zu beginn
-                ObstacleObjectClone = Instantiate(ObstacleObject, ObstacleObject.transform.position, transform.rotation);
+                ObstacleObjectClone = Instantiate(ObstacleObject, new Vector3(4, ObstacleObject.transform.position.y, ObstacleObject.transform.position.z), transform.rotation);
+                Destroy(ObstacleObject);
                 tracker = true; // somit kann diese aktion nur 1mal durchgeführt werden!
             }
-            
+
         }
         // Destroy(ObstacleObject);
     }
